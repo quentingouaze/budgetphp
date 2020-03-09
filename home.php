@@ -3,37 +3,46 @@
 include 'header.php';
 
 if (isset($_SESSION['user_id']) ) {
-echo "Connecté, user id: " .$_SESSION['user_id'];
 
-    if (isset($_POST['entryName'])){
-
+    if (isset($_POST['addEntry'])){
+addBudgetEntry($pdo);
     }
 ?>
         <form action="home.php" method="post">
             <label for="entryName">Name</label>
             <input type="text" id="entryName" name="entryName">
+            <label for="entryValue">Value</label>
+            <input type="number" id="entryValue" name="entryValue">
             <label for="entryType">Type</label>
             <input type="text" id="entryType" name="entryType">
             <label for="entryDetail">Detail</label>
-            <input type="textarea" id="entryDetail" name="entryDetail">
-            <label for="entryCategory"></label>
-            <select id="entryCategory"></select>
+            <textarea id="entryDetail" name="entryDetail"></textarea>
+            <label for="entryCategory">Category</label>
+            <select id="entryCategory" name="entryCategory">
 
     <?php
     $categories=getCategoriesList($pdo);
     foreach($categories as $category){
-        var_dump($category);
-        echo "<br>";
-       // echo '<option value="'.$category['entry']
+        echo '<option value="'.$category["idCategory"].'">'.$category["categoryName"].'</option>';
     }
     ?>
+            </select>
+            <input type="submit" name="addEntry" value="Add Entry">
         </form>
 
 
 <?php
+echo "Show User Budget: ";
+if (showUserBudget($pdo)){
+    print_r(showUserBudget($pdo));
 
-var_dump(showUserBudget($pdo));
 }
+else{
+ echo "List is empty";
+}}
 else{
     echo "Non connecté, login ou register";
 }
+
+
+include_once 'footer.php';

@@ -37,12 +37,12 @@ else if(!isset($_SESSION['user_id'])){
     <input type="password" id="password" name="password"><br>
     <input type="submit" name="login" value="Login">
 </form>
-</body>
-</html>
 <?php
 
 }
 else{
     echo "User already logged in";
 }
+
+include_once 'footer.php';
 ?>

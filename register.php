@@ -42,9 +42,10 @@ else{
     <input type=\"text\" id=\"password\" name=\"password\"><br>
     <input type=\"submit\" name=\"register\" value=\"Register\">
 </form>
-</body>
-</html>
+
 ";
 }
+
+include_once 'footer.php';
 
 

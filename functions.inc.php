@@ -16,11 +16,12 @@ $entryType=$_POST['entryType'];
 $entryCategory=$_POST['entryCategory'];
 $entryDetail=$_POST['entryDetail'];
 $entryUser=$_SESSION['user_id'];
-$date=date();
-    $sql="INSERT INTO entries (entryName, entryType, entryDetail, entryCategory, entryUser, date) 
-VALUES (?,?,?,?,?,?)";
+$entryValue=$_POST['entryValue'];
+$date=date("Y-m-d");
+    $sql="INSERT INTO entries (entryName, entryType, entryDetail, entryCategory, entryValue, entryUser, date) 
+VALUES (?,?,?,?,?,?,?)";
     $stmt=$pdo->prepare($sql);
-    $stmt->execute([$entryName, $entryType, $entryDetail, $entryCategory, $entryUser, $date]);
+    $stmt->execute([$entryName, $entryType, $entryDetail, $entryCategory, $entryValue, $entryUser, $date]);
 }
 
 
