@@ -17,13 +17,15 @@ require_once 'functions.inc.php';
         <li>
             <a href="home.php">Home</a>
         </li>
-<?php
-if (isset($_SESSION['user_id']) ) {
-    echo "<li><a href='logoff.php'>Log Off</a></li>";
+        <?php
+        if (isset($_SESSION['user_id'])) {
+            echo "<li><a href='logoff.php'>Log Off</a></li>";
 
-} else {
+        } else {
 
-    echo "<li><a href='login.php'>Login</a></li><li><a href='register.php'>Register</a></li>";
-}
-?>
+            echo "<li><a href='login.php'>Login</a></li><li><a href='register.php'>Register</a></li>";
+        }
+        ?>
     </ul>
+</header>
+<main>

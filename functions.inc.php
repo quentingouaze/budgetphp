@@ -7,23 +7,24 @@ function showUserBudget($pdo)
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':userid', $user_id);
     $stmt->execute();
-    $entries = $stmt->fetch(PDO::FETCH_ASSOC);
+    $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $entries;
 }
-function addBudgetEntry($pdo){
-$entryName=$_POST['entryName'];
-$entryType=$_POST['entryType'];
-$entryCategory=$_POST['entryCategory'];
-$entryDetail=$_POST['entryDetail'];
-$entryUser=$_SESSION['user_id'];
-$entryValue=$_POST['entryValue'];
-$date=date("Y-m-d");
-    $sql="INSERT INTO entries (entryName, entryType, entryDetail, entryCategory, entryValue, entryUser, date) 
+
+function addBudgetEntry($pdo)
+{
+    $entryName = $_POST['entryName'];
+    $entryType = $_POST['entryType'];
+    $entryCategory = $_POST['entryCategory'];
+    $entryDetail = $_POST['entryDetail'];
+    $entryUser = $_SESSION['user_id'];
+    $entryValue = $_POST['entryValue'];
+    $date = date("Y-m-d");
+    $sql = "INSERT INTO entries (entryName, entryType, entryDetail, entryCategory, entryValue, entryUser, date) 
 VALUES (?,?,?,?,?,?,?)";
-    $stmt=$pdo->prepare($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([$entryName, $entryType, $entryDetail, $entryCategory, $entryValue, $entryUser, $date]);
 }
-
 
 function selectUser($username, $pdo)
 {
@@ -37,9 +38,9 @@ function selectUser($username, $pdo)
 
 function getCategoriesList($pdo)
 {
-    $sql="SELECT idCategory, categoryName  FROM categories ";
-    $stmt=$pdo->prepare($sql);
+    $sql = "SELECT idCategory, categoryName  FROM categories ";
+    $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $categories;
 }
